@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>VueViewBlocker</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<style>
+
+
+</style>
+<body>
+
+
+<vue-view-blocker :type="2">
+<div v-show="page" style="background: #000;color: #fff;width: 100%;height: 100%;display: none">block</div>
+</vue-view-blocker>
+<div @click="playing=false">stop</div>
+<script src="dist/vue.min.js"></script>
+<script src="dist/smart.min.js"></script>
+<script src="dist/vue-view-blocker.js"></script>
+
+<script>
+
+    Smart.Css.createSmartCssStyle('.blur', {filter: 'blur(0px);'});
+    // Smart.Css.smartCss(document.querySelector('.blur'),{filter:'blur(10px);',width:'100%'});
+    new Vue({
+        el: 'body',
+        components: {
+            VueViewBlocker: VueViewBlocker
+        },
+        data: {playing:true,
+            page: 1, show: false, movies: [{current: 0.5}]
+        },
+        methods: {
+
+            onFrame:function (mc) {
+                console.log(mc.frame)
+            },
+            onPlay:function (mc) {
+                console.log('play')
+            },
+            onStop:function (mc) {
+                console.log('stop')
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>
