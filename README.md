@@ -3,7 +3,7 @@
 block view from wrong dirction;
 update on window resize
 
-@param
+@params
 
 type:Number ,1 block landscape,2 block portrait
 
