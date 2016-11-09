@@ -16,8 +16,10 @@
 <body>
 
 
-<vue-view-blocker :type="1">
-<div v-show="page" style="background: #000;color: #fff;width: 100%;height: 100%;display: none;text-align: center;padding-top: 180px">请竖屏浏览</div>
+<vue-view-blocker :type="1" :enabled.sync="blocker_enabled">
+<div v-show="page" style="background: #000;color: #fff;width: 100%;height: 100%;display: none;text-align: center;padding-top: 150px">请竖屏浏览<br/>
+<a @click="blocker_enabled=false">确定</a>
+</div>
 </vue-view-blocker>
 <div @click="playing=false">stop</div>
 <script src="dist/vue.min.js"></script>
@@ -33,7 +35,7 @@
         components: {
             VueViewBlocker: VueViewBlocker
         },
-        data: {playing:true,
+        data: {playing:true,blocker_enabled:true,
             page: 1, show: false, movies: [{current: 0.5}]
         },
         methods: {

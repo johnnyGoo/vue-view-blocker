@@ -1,5 +1,5 @@
 <template>
-    <div v-show="display" style="width: 100%;height: 100%;position: absolute;z-index: 99999;left: 0px;top:0px">
+    <div v-show="visible" style="width: 100%;height: 100%;position: absolute;z-index: 99999;left: 0px;top:0px">
         <slot ></slot>
     </div>
 </template>
@@ -31,6 +31,11 @@
                 type: Number,
                 default: 1
             }
+            ,
+            enabled: {
+                type: Boolean,
+                default: true
+            }
         },
         data: function () {
             return {
@@ -39,11 +44,16 @@
 
         },
         methods: {},
-        computed: {},
+        computed: {
+            visible:function () {
+                return this.display&&this.enabled;
+            }
+        },
         ready: function () {
             var me = this;
 
             function onresize() {
+                if(me.enabled==true){
                 var windowSize = Smart.Utils.windowSize();
                 if (windowSize.width > windowSize.height) {
                     if (me.type == 1) {
@@ -59,6 +69,10 @@
                         me.display = false;
                     }
                 }
+                }else{
+                    me.display = false;
+                }
+
             }
 
             var rm_widow = Smart.Event.windowEvent('resize', onresize);
