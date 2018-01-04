@@ -1,9 +1,25 @@
-# vue-view-blocker
 
-block view from wrong dirction;
-update on window resize
+###Usage
+```
+npm run dev
+```
+```
+npm run build
+```
 
-@params
 
-type:Number ,1 block landscape,2 block portrait
+###props:
+```
+
+
+```
+###methods
+```
+
+
+```
+###properties
+```
+
+```
 
