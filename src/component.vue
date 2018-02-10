@@ -3,9 +3,11 @@
     <div ref="div" v-if="block===true" :ontouchmove="ontouchmove"
          style="left: 0px;top:0px;width:100%;height:100%;position: absolute;overflow:hidden;background: rgba(0,0,0,1)">
         <div style="left: 50%;top: 50%;position: absolute;width: 0px;height: 0px">
-            <div v-if="block===true" class="view_blocker_rotate_icon" style="margin-left: -33px;margin-top: -85px">
+            <slot>
+                <div v-show="block===true" class="view_blocker_rotate_icon" style="margin-left: -33px;margin-top: -85px">
 
-            </div>
+                </div>
+            </slot>
             <div style="color: #fff;height: 20px;width: 500px;text-align: center;margin-top: 20px;margin-left: -250px">
                 {{blockMessage}}
             </div>
@@ -23,6 +25,7 @@
     {
         opacity: 0
     }
+
     @keyframes view_blocker_rotate_icon_rotation {
         10% {
             transform: rotate(90deg);
@@ -112,7 +115,7 @@
                 type: String,
                 default: ''
             },
-            scroll:{
+            scroll: {
                 type: Boolean,
                 default: false
             }
@@ -122,22 +125,22 @@
                 block: false,
                 removeEvent: function () {
                 },
-                ontouchmove:''
+                ontouchmove: ''
             }
         },
-        methods:{
-            update:function () {
+        methods: {
+            update: function () {
                 switch (this.type) {
                     case LANDSCAPE:
                         if (viewType() === PORTRAIT) {
-                            this.block =true;
+                            this.block = true;
                         } else {
                             this.block = false;
                         }
                         break;
                     default:
                         if (viewType() === LANDSCAPE) {
-                            this.block =true;
+                            this.block = true;
                         } else {
                             this.block = false;
                         }
@@ -156,7 +159,7 @@
             });
             self.update();
             if (false === this.scroll) {
-                this.ontouchmove= 'event.preventDefault();';
+                this.ontouchmove = 'event.preventDefault();';
             }
         }
     }
